@@ -13,7 +13,7 @@ module.exports = () => {
   const strategy = new Strategy(options, async (payload, done) => {
     const user = await User.findById(payload.id);
     if (user) {
-      return done(null, { id: user_id, email: user_email, name: user_name });
+      return done(null, { id: user._id, email: user.email, name: user.name });
     } else {
       return done(new Error("user not founr=d"), null);
     }
@@ -23,8 +23,8 @@ module.exports = () => {
     initiallze() {
       return passport.initialize();
     },
-    authentice() {
-      return passpprt.authentice("jwt", config.jwtSession);
+    authenticate() {
+      return passport.authenticate("jwt", config.jwtSession);
     }
   };
 };
