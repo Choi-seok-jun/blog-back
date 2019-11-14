@@ -55,14 +55,14 @@ router.get(
         .skip(skip)
         .limit(5)
         .sort("-date")
-        .populate("tags");
+        .populate("tags", "name");
       res.json({ posts });
     } else {
       const posts = await Post.find()
         .limit(5)
         .skip(skip)
         .sort("-date")
-        .populate("tags");
+        .populate("tags", "name");
       res.json({ posts });
     }
     next();
