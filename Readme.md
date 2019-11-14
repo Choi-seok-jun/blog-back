@@ -54,13 +54,14 @@
    | 글 쓰기              | /api/post        | POST   | title, tags, contents, token     | result(B)                                                    |
    | 글 수정              | /api/post/:id    | PATCH  | id, title, tags, contents, token | result(B)                                                    |
    | 글 삭제              | /api/post/:id    | DELETE | id, token                        | result(B)                                                    |
-   | 댓글 쓰기            | /api/comment     | POST   | post-id, token, contents         | result(B)                                                    |
+   | 댓글 쓰기            | /api/comment     | POST   | post_id, token, contents         | result(B)                                                    |
+   | 댓글 읽기            | /api/comment     | get    | post_id                          | comments                                                     |
    | 댓글 삭제            | /api/comment/:id | DELETE | id, token,                       | result(B)                                                    |
    | 태그 검색            | /api/tag:name    | GET    | name                             | tag{id,name,posts}                                           |
-   | 태그 만들기          | /api/tag         | POST   | name                             | tag{id,name,posts}                                           |
-
-   ## DB
-
+| 태그 만들기          | /api/tag         | POST   | name                             | tag{id,name,posts}                                           |
+   
+## DB
+   
    - users
      - name
      - email(unique)
@@ -80,40 +81,40 @@
      - post_id
      - author
      - contents
-     - date
-
-   ## Gitflow
-
-   - `master`
-
-     배포되는 버전만 존재하는 브랜치 입니다.
-
-   - `develop`
-
-     `master`에서 시작되었고, 앞으로 배포할 기능을 개발하게 될 브랜치 입니다. 기능 구현이 완료되면 `master`로 merge합니다.
-
-   - `feature`
-
-     `develop`에서 시작하는 브랜치이며, 구현해야하는 기능 별로 브랜치를 관리합니다. 구현해야할 기능이 완성되면 `develop`으로 merge합니다.
-
-     참고 : `feature/login`
-
-   ## 세부 순서
-
-   1. 최고 책임자가 `master`브랜치를 구성합니다.
-
-   2. `develop` 브랜치를 따서 필요한 파일 트리를 모두 추가하고, github에다가 업로드합니다.
-
-   3. trello의 `할 일`에 해야할 일 카드를 만듭니다.
-
-   4. 일을 시작하면 trello에서 `하고 있는 일`로 해당 카드를 옮깁니다.
-
-   5. 브랜치를 따기전에 먼저 `git pull` 하시고, `develop`에서 `feature/할일` 브랜치를 만듭니다.
-
-   6. 해당 기능 구현이 완료되면, github에 해당 브랜치를 업로드하고, pull request를 보냅니다.
-
-      참고 : `git push origin feature/할일`
-
-   7. 책임자와 코드리뷰 등을 진행한 다음, `develop`브랜치에 merge하고, 해당 카드를 `완료`로 이동합니다.
-
+  - date
+   
+## Gitflow
+   
+- `master`
+   
+  배포되는 버전만 존재하는 브랜치 입니다.
+   
+- `develop`
+   
+  `master`에서 시작되었고, 앞으로 배포할 기능을 개발하게 될 브랜치 입니다. 기능 구현이 완료되면 `master`로 merge합니다.
+   
+- `feature`
+   
+  `develop`에서 시작하는 브랜치이며, 구현해야하는 기능 별로 브랜치를 관리합니다. 구현해야할 기능이 완성되면 `develop`으로 merge합니다.
+   
+  참고 : `feature/login`
+   
+## 세부 순서
+   
+1. 최고 책임자가 `master`브랜치를 구성합니다.
+   
+2. `develop` 브랜치를 따서 필요한 파일 트리를 모두 추가하고, github에다가 업로드합니다.
+   
+3. trello의 `할 일`에 해야할 일 카드를 만듭니다.
+   
+4. 일을 시작하면 trello에서 `하고 있는 일`로 해당 카드를 옮깁니다.
+   
+5. 브랜치를 따기전에 먼저 `git pull` 하시고, `develop`에서 `feature/할일` 브랜치를 만듭니다.
+   
+6. 해당 기능 구현이 완료되면, github에 해당 브랜치를 업로드하고, pull request를 보냅니다.
+   
+   참고 : `git push origin feature/할일`
+   
+7. 책임자와 코드리뷰 등을 진행한 다음, `develop`브랜치에 merge하고, 해당 카드를 `완료`로 이동합니다.
+   
    8. `할 일`을 모두 완료할 때까지 3~7을 계속 반복합니다.
