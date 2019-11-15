@@ -48,7 +48,7 @@ router.get(
   wrapper(async (req, res, next) => {
     const { tag, page = 1 } = req.query;
     const skip = parseInt(page) * 5 - 5;
-    if (taf) {
+    if (tag) {
       const posts = await Post.find()
         .where(tags)
         .in(tag)
